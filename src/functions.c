@@ -28,7 +28,7 @@ FUNCTION *create_func_twop(FUNC_TWO_PARAM fun){
   return res;
 }
 
-FUNCTION *create_func_const(short number){
+FUNCTION *create_func_const(double complex number){
   FUNCTION *res = calloc(1, sizeof(FUNCTION));
   res->type = CONST;
   res->num = number;
@@ -59,6 +59,8 @@ double complex evaluate_func_onep(const FUNCTION *func, double complex x){
       res = 1/ctan(x); break; // TODO: деление на 0
     case EXP:
       res = cexp(x); break;
+    case CONJ:
+      res = conj(x); break;
     default:
       return 0;
   }
@@ -150,6 +152,8 @@ char* print_func_onep(const FUNCTION *func, char* x) {
       return make_onep("\\cot", x, 1);
     case EXP: 
       return make_onep("e^", x, 1);
+    case CONJ:
+      return make_onep("\\con", x, 0);
     default: 
       return strdup(x);
     }
@@ -202,6 +206,6 @@ char* print_func_const(const FUNCTION *func) {
   char *buf = malloc(20);
   if (!buf) return NULL;
 
-  sprintf(buf, "%lf", creal(func->num));
+  sprintf(buf, "%lfI", cimag(func->num));
   return buf;
 }

@@ -5,7 +5,7 @@
 
 FUNCTION* create_func_onep(FUNC_ONE_PARAM fun);
 FUNCTION* create_func_twop(FUNC_TWO_PARAM fun);
-FUNCTION* create_func_const(short number);
+FUNCTION* create_func_const(double complex number);
 
 TYPE get_func_type(const FUNCTION *func);
 

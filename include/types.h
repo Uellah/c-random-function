@@ -17,7 +17,8 @@ typedef enum {
   TAN = 5,
   CTAN = 6,
   EXP = 7,
-  END_ONE_P = 8
+  CONJ = 8,
+  END_ONE_P = 9
 } FUNC_ONE_PARAM;
 
 typedef enum {

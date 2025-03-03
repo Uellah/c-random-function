@@ -1,82 +1,84 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "types.h"
 #include "functions.h"
 #include "tree.h"
 #include "random_tree.h"
 #include "random_func.h"
 #include "solve.h"
+#include "fractal_drawer.h"
+
+int main(){
+  init();
+  NODE* func;
+  func = get_random_tree(1);
+  get_random_func_tree(func);
+  run_fractal_loop(func);
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #if 0
 int main(){
-    FUNCTION *f;
-    NODE *tree, *tmp, *tmp2;
-    char *res;
-
-    // Создаём корень: cos(...)
-    f = create_func_twop(PLUS);
-    tree = create_tree(f);
-
-    // Левое поддерево: sin(x) + e^(3 - 2)
-    f = create_func_onep(SIN);
-    add_left(tree, f);
-
-    // Левый потомок: sin(x)
-    tmp = get_left(tree);
-    f = create_func_const(6);
-    add_left(tmp, f);
-    add_left(get_left(tmp), create_func_const(0)); // sin(x) → sin(0), x подставляется на месте
-
-    // Правый потомок: e^(3 - 2)
-    f = create_func_const(1);
-    add_right(tmp, f);
-
-    // Вложенное поддерево: 3 - 2
-    tmp2 = get_right(tmp);
-    f = create_func_twop(MINUS);
-    add_left(tmp2, f);
-    add_left(get_left(tmp2), create_func_const(3));
-    add_right(get_left(tmp2), create_func_const(2));
-
-    // Правое поддерево: -5
-    f = create_func_onep(COS);
-    add_right(tree, f);
-
-    // Вычисляем строковое представление выражения
-    //print_tree(tree, 5);
-    res = get_an_fun(tree, "0");
-    
-    printf("%s\n", res);
-    res = get_an_fun(tree, "0");
-    printf("%s\n", res);
-    res = get_an_fun(tree, "0");
-    printf("%s\n", res);
-    res = get_an_fun(tree, "0");
-    printf("%s\n", res);
-
-    // Освобождаем память
-    delete_tree(tree);
-    free(res);
-
-    return 0;
-}
-#endif
-#if 1
-int main(){
   NODE* tree;
   char* res;
+  double complex a = 2 * I;
+  //tree = get_random_tree(3);
+  //get_random_func_tree(tree);
+  //tree = create_tree(create_func_twop(FRAC));
 
-  tree = get_random_tree(3);
-  get_random_func_tree(tree);
-  //tree = create_tree(create_func_onep(SIN));
   //add_left(tree, create_func_onep(X));
- // add_right(tree, create_func_onep(SIN));
+  // add_right(tree, create_func_onep(SIN));
+  //tree = create_tree(create_func_twop(FRAC));  // Корень: деление
+
+  // Левый потомок (вычитание: x - conj(x))
+  //add_left(tree, create_func_twop(MINUS));  
+
+  // Левый узел вычитания (x)
+  //add_left(get_left(tree), create_func_onep(X));  
+
+  // Правый узел вычитания (conj(x))
+  //add_right(get_left(tree), create_func_onep(CONJ));  
+
+  /// Правый потомок корня (константа 2i)
+  //add_right(tree, create_func_const(a));  
+  tree = create_tree(create_func_twop(MINUS));  // Корень: вычитание
+
+  // Левый потомок (умножение: x * conj(x))
+  add_left(tree, create_func_twop(MULT));  
+
+  // Левый узел умножения (x)
+  add_left(get_left(tree), create_func_onep(X));  
+
+  // Правый узел умножения (conj(x))
+  add_right(get_left(tree), create_func_onep(CONJ));  
+
+  // Правый потомок корня (константа r)
+  add_right(tree, create_func_const(0.01));  
+
   res = get_an_fun(tree, "x");
   printf("\n\n%s\n", res);
-
-  save_points_to_file("output.csv", tree, 0, 0, 2, 8000);
+  //printf("%lf", evaluate(tree, a));
+  save_points_to_file("output.csv", tree, 0, 0, 0.5, 9000);
   free(res);
   return 0;
 }
 #endif
+
