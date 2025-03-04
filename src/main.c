@@ -12,8 +12,14 @@
 int main(){
   init();
   NODE* func;
-  func = get_random_tree(1);
+  char* res;
+
+  func = get_random_tree(3);
   get_random_func_tree(func);
+
+  res = get_an_fun(func, "x");
+  printf("\n\n%s\n", res);
+
   run_fractal_loop(func);
   return 0;
 }
