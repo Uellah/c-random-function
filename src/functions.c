@@ -153,7 +153,7 @@ char* print_func_onep(const FUNCTION *func, char* x) {
     case EXP: 
       return make_onep("e^", x, 1);
     case CONJ:
-      return make_onep("\\con", x, 0);
+      return make_onep("\\overline", x, 0);
     default: 
       return strdup(x);
     }
