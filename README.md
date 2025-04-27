@@ -27,7 +27,7 @@
 
 1. Клонировать репозиторий:
    ```sh
-   git clone [https://github.com/<user>/<repo>.git](https://github.com/Uellah/c-random-function)
+   git clone https://github.com/Uellah/c-random-function
    cd c-random-function
    ```
 2. Установить зависимости:
@@ -88,5 +88,5 @@ save_points_to_file("output.csv", func, x_center, y_center, range, resolution);
 
 ## Примеры фракталов
 
-![Пример фрактала 1](docs/images/fractal1.png)  
-![Пример фрактала 2](docs/images/fractal2.png)  
+![Пример фрактала 1](https://imgur.com/ae0ctJX) 
+![Пример фрактала 2](https://imgur.com/a/wYxKuPx)
