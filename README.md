@@ -88,5 +88,5 @@ save_points_to_file("output.csv", func, x_center, y_center, range, resolution);
 
 ## Примеры фракталов
 
-![Пример фрактала 1](https://imgur.com/ae0ctJX) 
+![Пример фрактала 1][Imgur](https://imgur.com/ae0ctJX)
 ![Пример фрактала 2](https://imgur.com/a/wYxKuPx)
